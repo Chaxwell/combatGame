@@ -15,4 +15,8 @@ aside a.list-group-item:focus {
   transition: all linear 200ms;
 }
 
+nav a.nav-link {
+  color: #fff;
+}
+
 /*# sourceMappingURL=styles.css.map */
