@@ -16,17 +16,7 @@ session_start();
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark">
-        <span class="navbar-brand mb-0 h1 mr-auto">Combat Gaymu</span>
-        <?php
-        if (isset($_SESSION['userId'])) {
-            printf('<span class="navbar-brand mb-0 h1 ml-auto">%s</span>', $_SESSION['nickname']);
-            printf('<a href="partials/deconnexion.php" class="nav-link">Déconnexion</a>');
-        } else {
-            require('partials/connexion-inscription.php');
-        }
-        ?>
-    </nav>
+    <?php require('partials/navbar.php'); ?>
 
 
     <aside class="block-players d-flex justify-content-start align-items-center">

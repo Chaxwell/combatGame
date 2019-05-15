@@ -18,5 +18,14 @@ aside a.list-group-item:focus {
 nav a.nav-link {
   color: #fff;
 }
+nav .modal .modal-dialog .modal-content .modal-body .form-check label .classe-personnage {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid rgba(25, 25, 25, 0.3);
+}
+nav .modal .modal-dialog .modal-content .modal-body .form-check label .classe-personnage-selected {
+  border: 2px solid yellow !important;
+}
 
 /*# sourceMappingURL=styles.css.map */
