@@ -16,7 +16,7 @@
                 <form action="processing/traitement-creation-personnage.php" method="post" autocomplete="off">
                     <div class="form-check-inline">
                         <div class="form-check">
-                            <input class="form-check-input d-none" type="radio" name="classesPersonnage" id="warrior" value="warrior" checked>
+                            <input class="form-check-input d-none" type="radio" name="characterClass" id="warrior" value="warrior" checked>
                             <label class="form-check-label text-center" for="warrior">
                                 <img class="classe-personnage d-block" src="assets/img/warrior.png" alt="warrior">
                                 Guerrier
@@ -25,7 +25,7 @@
                     </div>
                     <div class="form-check-inline">
                         <div class="form-check">
-                            <input class="form-check-input d-none" type="radio" name="classesPersonnage" id="wizard" value="wizard">
+                            <input class="form-check-input d-none" type="radio" name="characterClass" id="wizard" value="wizard">
                             <label class="form-check-label text-center" for="wizard">
                                 <img class="classe-personnage d-block" src="assets/img/wizard.png" alt="wizard">
                                 Mage
@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-check-inline">
                         <div class="form-check mb-5">
-                            <input class="form-check-input d-none" type="radio" name="classesPersonnage" id="archer" value="archer">
+                            <input class="form-check-input d-none" type="radio" name="characterClass" id="archer" value="archer">
                             <label class="form-check-label text-center" for="archer">
                                 <img class="classe-personnage d-block" src="assets/img/archer.png" alt="archer">
                                 Archer
@@ -42,18 +42,18 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="nickname">Son nom</label>
-                        <input class="form-control" type="text" id="nickname" name="nickname" placeholder="Le nom de votre personnage">
+                        <label for="characterName">Son nom</label>
+                        <input class="form-control" type="text" id="characterName" name="characterName" placeholder="Le nom de votre personnage">
                     </div>
                     <div class="form-group">
-                        <label for="nickname">Ses points de vie </label>
-                        <input class="form-control" type="number" id="nickname" name="nickname" value="100" readonly>
+                        <label for="characterHP">Ses points de vie </label>
+                        <input class="form-control" type="number" id="characterHP" name="characterHP" value="100" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="nickname">Sa force</label>
-                        <input class="form-control" type="number" id="nickname" name="nickname" value="10" readonly>
+                        <label for="characterStrength">Sa force</label>
+                        <input class="form-control" type="number" id="characterStrength" name="characterStrength" value="10" readonly>
                     </div>
-                    <button type="submit" class="btn btn-dark" name="inscription">Créer mon perso</button>
+                    <button type="submit" class="btn btn-dark" name="characterCreation">Créer mon perso</button>
                 </form>
             </div>
         </div>
