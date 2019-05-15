@@ -1,6 +1,5 @@
 <?php
-
-
+session_start();
 
 ?>
 
@@ -19,6 +18,7 @@
 <body>
     <nav class="navbar navbar-dark bg-dark">
         <span class="navbar-brand mb-0 h1 mx-auto">Combat Gaymu</span>
+        <?php require('partials/connexion-inscription.php'); ?>
     </nav>
 
 
