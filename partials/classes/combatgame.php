@@ -23,3 +23,48 @@ class Character
         // aze
     }
 }
+
+class Wizard extends Character
+{
+
+    function __construct($name, $class)
+    {
+        $this->$name = $name;
+        $this->$class = $class;
+    }
+
+    function takeDamage($damage)
+    {
+        // polymorphed
+    }
+}
+
+class Archer extends Character
+{
+
+    function __construct($name, $class)
+    {
+        $this->$name = $name;
+        $this->$class = $class;
+    }
+
+    function takeDamage($damage)
+    {
+        // polymorphed
+    }
+}
+
+class Warrior extends Character
+{
+
+    function __construct($name, $class)
+    {
+        $this->$name = $name;
+        $this->$class = $class;
+    }
+
+    function takeDamage($damage)
+    {
+        // polymorphed
+    }
+}
