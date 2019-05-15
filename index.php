@@ -1,3 +1,9 @@
+<?php
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -11,6 +17,22 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mb-0 h1 mx-auto">Combat Gaymu</span>
+    </nav>
+
+
+    <aside class="block-players d-flex justify-content-start align-items-center">
+        <div class="list-players">
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
+                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+                <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+            </div>
+        </div>
+    </aside>
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
