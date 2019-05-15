@@ -8,6 +8,7 @@ radios.forEach(radio => {
             image.classList.remove('classe-personnage-selected');
         });
 
+        // Image selected
         radio.childNodes[3].childNodes[1].classList.add('classe-personnage-selected');
     });
 });
