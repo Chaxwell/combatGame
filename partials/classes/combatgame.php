@@ -73,16 +73,11 @@ class CharacterManager
 {
     private $_bdd;
 
-    public function addCharacter(Character $character)
+    public function add(Character $character)
     {
         $req = $this->bdd()->prepare('INSERT INTO characters(userId, name, healthPoints, class, strength)
                                       VALUES(?, ?, ?, ?, ?)');
-        $req = $this->bdd()->execute(array(getUserId(), getCharacterName(), getHealthPoints(), getClass(), getStrength()));
-    }
-
-    private function getUserId()
-    {
-        // aze
+        $req = $this->bdd()->execute(array($character->userId, $character->name, $character->healthPoints, $character::CATEGORY, $character->strength));
     }
 
     private function bdd()
