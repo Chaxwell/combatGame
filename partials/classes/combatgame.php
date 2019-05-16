@@ -7,51 +7,48 @@ class Character
 
     protected function _attack($target)
     {
-	$this->setDamage();
-	$this->damageAugmented($target);
-	$target->_takeDamage($this);
+        $this->setDamage();
+        $this->damageAugmented($target);
+        $target->_takeDamage($this);
     }
 
     protected function _takeDamage($attacker)
     {
-	$this->healthPoints -= $attacker->damage;
+        $this->healthPoints -= $attacker->damage;
     }
 
     protected function _deleteIfDead()
     {
-
+        // aze
     }
 
     public function getHealthpoints()
     {
-	return $this->healthPoints;
+        return $this->healthPoints;
     }
 
     public function getName()
     {
-	return $this->name;
+        return $this->name;
     }
-    
+
     protected function setDamage()
     {
-	$this->damage = rand(0, 4) * $this->strength;
+        $this->damage = rand(0, 4) * $this->strength;
     }
-    
+
     protected function damageAugmented($target)
     {
-	/* ici $this fait référence à l'attaquant */
-	if ($this::CATEGORY == "Warrior" && $target::CATEGORY == "Wizard")
-	{
-	    $this->damage = $this->damage * 2;
-	}
-	if ($this::CATEGORY == "Wizard" && $target::CATEGORY == "Archer")
-	{
-	    $this->damage = $this->damage * 2;
-	}
-	if ($this::CATEGORY == "Archer" && $target::CATEGORY == "Warrior")
-	{
-	    $this->damage = $this->damage * 2;
-	}
+        /* ici $this fait référence à l'attaquant */
+        if ($this::CATEGORY == "Warrior" && $target::CATEGORY == "Wizard") {
+            $this->damage = $this->damage * 2;
+        }
+        if ($this::CATEGORY == "Wizard" && $target::CATEGORY == "Archer") {
+            $this->damage = $this->damage * 2;
+        }
+        if ($this::CATEGORY == "Archer" && $target::CATEGORY == "Warrior") {
+            $this->damage = $this->damage * 2;
+        }
     }
 }
 
@@ -63,12 +60,12 @@ class CharacterManager
     {
         $req = $this->bdd()->prepare('INSERT INTO characters(userId, name, healthPoints, class, strength)
                                       VALUES(?, ?, ?, ?, ?)');
-        $req = $this->bdd()->execute(array($character->userId, $character->name, $character->healthPoints, $character::CATEGORY, $character->strength));
+        $req->execute(array(1, $character->getName(), $character->getHealthPoints(), strtolower($character::CATEGORY), $character->strength));
     }
 
     private function bdd()
     {
-        $this->_bdd = new PDO('mysql:host=127.0.0.1;dbname=combatgame;characterset=utf8');
+        $this->_bdd = new PDO('mysql:host=127.0.0.1;dbname=combatgame;characterset=utf8', 'root', 'AzertyuioP123');
         $this->_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->_bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
@@ -79,19 +76,18 @@ class CharacterManager
 class Wizard extends Character
 {
     public $strength = 10;
-    
+
     const CATEGORY = "Wizard";
 
     function __construct($name)
     {
-	$this->name = $name;
+        $this->name = $name;
     }
 
     public function attack($target)
     {
-	$this->_attack($target);
+        $this->_attack($target);
     }
-
 }
 
 class Archer extends Character
@@ -102,12 +98,12 @@ class Archer extends Character
 
     function __construct($name)
     {
-	$this->name = $name;
+        $this->name = $name;
     }
 
     public function attack($target)
     {
-	$this->_attack($target);
+        $this->_attack($target);
     }
 }
 
@@ -119,12 +115,12 @@ class Warrior extends Character
     const CATEGORY = "Warrior";
     function __construct($name)
     {
-	$this->name = $name;
+        $this->name = $name;
     }
 
     public function attack($target)
     {
-	$this->_attack($target);
+        $this->_attack($target);
     }
 }
 ?>
@@ -135,7 +131,7 @@ $character2 = new Archer("Pantoufle_Archer");
 $character3 = new Warrior("Grudu");
 ?>
 
-<p>"<?=$character1->getName()?>" attaque "<?=$character2->getName()?>"! <i> faites de la place !!</i></p>
+<p>"<?= $character1->getName() ?>" attaque "<?= $character2->getName() ?>"! <i> faites de la place !!</i></p>
 <?php $character1->attack($character2); ?>
 
 
@@ -146,19 +142,25 @@ $character3 = new Warrior("Grudu");
 <p> Perso :
     <strong><?= $character1->getName() ?> </strong>
     - PDV : <?= $character1->getHealthPoints(); ?>
-    - Class : <?= $character1::CATEGORY;?>
+    - Class : <?= $character1::CATEGORY; ?>
 </p>
 
 <!-- affichage des states des persos -->
 <p> Perso :
     <strong><?= $character2->getName() ?> </strong>
     - PDV : <?= $character2->getHealthPoints(); ?>
-    - Class : <?= $character2::CATEGORY;?>
+    - Class : <?= $character2::CATEGORY; ?>
 </p>
 
 <!-- affichage des states des persos -->
 <p> Perso :
     <strong><?= $character3->getName() ?> </strong>
     - PDV : <?= $character3->getHealthPoints(); ?>
-    - Class : <?= $character3::CATEGORY;?>
+    - Class : <?= $character3::CATEGORY; ?>
 </p>
+
+<?php
+
+$register = new CharacterManager();
+
+$register->add($character3);
