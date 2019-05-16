@@ -65,7 +65,7 @@ class CharacterManager
 
     private function bdd()
     {
-        $this->_bdd = new PDO('mysql:host=127.0.0.1;dbname=combatgame;characterset=utf8', 'root', 'AzertyuioP123');
+        $this->_bdd = new PDO('mysql:host=10.0.3.5;dbname=combatgame;characterset=utf8', 'root');
         $this->_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->_bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
