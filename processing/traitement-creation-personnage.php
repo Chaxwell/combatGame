@@ -1,5 +1,6 @@
 <?php
 session_start();
+require('../partials/classes/combatgame.php');
 require('../partials/connexion-bdd.php');
 
 if (empty($_POST['characterName'])) {
@@ -7,9 +8,22 @@ if (empty($_POST['characterName'])) {
     die('Erreur: un champ n\'est pas rempli.');
 }
 
-$req = $bdd->prepare('INSERT INTO characters(userId, name, healthPoints, class, strength)
-                      VALUES(?, ?, ?, ?, ?)');
-$req->execute(array($_SESSION['userId'], htmlspecialchars($_POST['characterName']), htmlspecialchars($_POST['characterHP']), htmlspecialchars($_POST['characterClass']), htmlspecialchars($_POST['characterStrength'])));
+$characterName = htmlspecialchars($_POST['characterName']);
+
+switch ($_POST['characterClass']) {
+    case 'wizard':
+        $character = new Wizard($characterName);
+        break;
+    case 'warrior':
+        $character = new Warrior($characterName);
+        break;
+    case 'archer':
+        $character = new Archer($characterName);
+        break;
+}
+
+$register  = new CharacterManager();
+$register->add($character, $_SESSION['userId']);
 
 
 header('Location: ../index.php');

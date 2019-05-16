@@ -1,5 +1,4 @@
 <?php
-
 class Character
 {
     protected $name;
@@ -56,16 +55,53 @@ class CharacterManager
 {
     private $_bdd;
 
-    public function add(Character $character)
+    public function add(Character $character, $userId)
     {
         $req = $this->bdd()->prepare('INSERT INTO characters(userId, name, healthPoints, class, strength)
                                       VALUES(?, ?, ?, ?, ?)');
-        $req->execute(array(1, $character->getName(), $character->getHealthPoints(), strtolower($character::CATEGORY), $character->strength));
+        $req->execute(array($userId, $character->getName(), $character->getHealthPoints(), strtolower($character::CATEGORY), $character->strength));
+    }
+
+    public function update(Character $character, array $kwargs, int $characterId)
+    {
+        foreach ($kwargs as $key => $value) {
+            // $update = "UPDATE characters SET {$key} = ? WHERE id = ?";
+            $req = $this->bdd()->prepare("UPDATE characters SET {$key} = ? WHERE id = ?");
+            $req->execute(array($value, $characterId));
+        }
+    }
+
+    public function delete(Character $character, int $characterId)
+    {
+        $req = $this->bdd()->prepare('DELETE FROM characters WHERE id = ?');
+        $req->execute(array($characterId));
+    }
+
+    public function getCharactersFromUser($userId)
+    {
+        $req = $this->bdd()->prepare('SELECT * FROM characters WHERE userId = ?');
+        $req->execute(array($userId));
+
+        return $req->fetchAll();
+    }
+
+    public function getAllCharacters()
+    {
+        $req = $this->bdd()->query('SELECT * FROM characters');
+
+        return $req->fetchAll();
+    }
+
+    public function countCharactersFromUser($userId)
+    {
+        $req = $this->bdd()->query('SELECT COUNT(*) FROM characters WHERE id = ?');
+
+        return $req->fetch();
     }
 
     private function bdd()
     {
-        $this->_bdd = new PDO('mysql:host=127.0.0.1;dbname=combatgame;characterset=utf8', 'root', 'AzertyuioP123');
+        $this->_bdd = new PDO('mysql:host=127.0.0.1;dbname=combatgame;charset=utf8', 'root', 'AzertyuioP123');
         $this->_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->_bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
@@ -76,6 +112,7 @@ class CharacterManager
 class Wizard extends Character
 {
     public $strength = 10;
+    public $healthPoints = 150;
 
     const CATEGORY = "Wizard";
 
@@ -93,6 +130,7 @@ class Wizard extends Character
 class Archer extends Character
 {
     public $strength = 15;
+    public $healthPoints = 125;
 
     const CATEGORY = "Archer";
 
@@ -109,8 +147,8 @@ class Archer extends Character
 
 class Warrior extends Character
 {
-
     public $strength = 20;
+    public $healthPoints = 100;
 
     const CATEGORY = "Warrior";
     function __construct($name)
@@ -123,44 +161,3 @@ class Warrior extends Character
         $this->_attack($target);
     }
 }
-?>
-
-<?php
-$character1 = new Wizard("Rantanplan_Wizard");
-$character2 = new Archer("Pantoufle_Archer");
-$character3 = new Warrior("Grudu");
-?>
-
-<p>"<?= $character1->getName() ?>" attaque "<?= $character2->getName() ?>"! <i> faites de la place !!</i></p>
-<?php $character1->attack($character2); ?>
-
-
-<!-- affichage des states des persos -->
-<!-- Ca ne sera pas comme ça en prod hein, c'est juste pour le dev pour voir si ça
-     marche... -->
-
-<p> Perso :
-    <strong><?= $character1->getName() ?> </strong>
-    - PDV : <?= $character1->getHealthPoints(); ?>
-    - Class : <?= $character1::CATEGORY; ?>
-</p>
-
-<!-- affichage des states des persos -->
-<p> Perso :
-    <strong><?= $character2->getName() ?> </strong>
-    - PDV : <?= $character2->getHealthPoints(); ?>
-    - Class : <?= $character2::CATEGORY; ?>
-</p>
-
-<!-- affichage des states des persos -->
-<p> Perso :
-    <strong><?= $character3->getName() ?> </strong>
-    - PDV : <?= $character3->getHealthPoints(); ?>
-    - Class : <?= $character3::CATEGORY; ?>
-</p>
-
-<?php
-
-$register = new CharacterManager();
-
-$register->add($character3);
