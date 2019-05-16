@@ -68,3 +68,29 @@ class Warrior extends Character
         // polymorphed
     }
 }
+
+class CharacterManager
+{
+    private $_bdd;
+
+    public function addCharacter(Character $character)
+    {
+        $req = $this->bdd()->prepare('INSERT INTO characters(userId, name, healthPoints, class, strength)
+                                      VALUES(?, ?, ?, ?, ?)');
+        $req = $this->bdd()->execute(array(getUserId(), getCharacterName(), getHealthPoints(), getClass(), getStrength()));
+    }
+
+    private function getUserId()
+    {
+        // aze
+    }
+
+    private function bdd()
+    {
+        $this->_bdd = new PDO('mysql:host=127.0.0.1;dbname=combatgame;characterset=utf8');
+        $this->_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->_bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+
+        return $this->_bdd;
+    }
+}
