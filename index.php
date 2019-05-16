@@ -17,16 +17,14 @@ session_start();
 
 <body>
     <?php require('partials/navbar.php'); ?>
+    <?php require('partials/classes/combatgame.php'); ?>
 
 
     <aside class="block-players d-flex justify-content-start align-items-center">
         <div class="list-players">
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
-                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+		<?php require('processing/create_list_all_character.php'); ?>
+                <!-- <a href="#" class="list-group-item list-group-item-action">Cras justo odio</a> -->
             </div>
         </div>
     </aside>
