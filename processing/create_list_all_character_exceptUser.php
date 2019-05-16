@@ -1,7 +1,7 @@
 <?php
 $charManager = new CharacterManager;
-
-$listCharacters = $charManager->getAllCharacters();
+$userId = $_SESSION['userId'];
+$listCharacters = $charManager->getAllCharactersExceptConnectedUser($userId);
 ?>
 
 <form>
