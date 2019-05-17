@@ -5,6 +5,7 @@ require('partials/classes/combatgame.php');
 
 <!DOCTYPE html>
 <html lang="fr">
+<!-- azee -->
 
 <head>
     <meta charset="UTF-8">
