@@ -9,18 +9,9 @@ if (empty($_POST['characterName'])) {
 }
 
 $characterName = htmlspecialchars($_POST['characterName']);
+$characterClass = ucfirst($_POST['characterClass']);
 
-switch ($_POST['characterClass']) {
-    case 'wizard':
-        $character = new Wizard($characterName);
-        break;
-    case 'warrior':
-        $character = new Warrior($characterName);
-        break;
-    case 'archer':
-        $character = new Archer($characterName);
-        break;
-}
+$character = new $characterClass($characterName);
 
 $register  = new CharacterManager();
 $register->add($character, $_SESSION['userId']);

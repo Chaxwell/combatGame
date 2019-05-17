@@ -16,9 +16,11 @@ class Character
         $this->healthPoints -= $attacker->damage;
     }
 
-    protected function _deleteIfDead()
+    protected function _deleteIfDead(int $healthPoints)
     {
-        // aze
+        if ($healthPoints <= 0) {
+            // aze
+        }
     }
 
     public function getHealthpoints()
@@ -54,6 +56,7 @@ class Character
 class CharacterManager
 {
     private $_bdd;
+    private $ip = '127.0.0.1';
 
     public function add(Character $character, $userId)
     {
@@ -65,7 +68,6 @@ class CharacterManager
     public function update(Character $character, array $kwargs, int $characterId)
     {
         foreach ($kwargs as $key => $value) {
-            // $update = "UPDATE characters SET {$key} = ? WHERE id = ?";
             $req = $this->bdd()->prepare("UPDATE characters SET {$key} = ? WHERE id = ?");
             $req->execute(array($value, $characterId));
         }
@@ -94,14 +96,15 @@ class CharacterManager
 
     public function countCharactersFromUser($userId)
     {
-        $req = $this->bdd()->query('SELECT COUNT(*) FROM characters WHERE id = ?');
+        $req = $this->bdd()->prepare('SELECT COUNT(*) AS count FROM characters WHERE userId = ?');
+        $req->execute(array($userId));
 
         return $req->fetch();
     }
 
     private function bdd()
     {
-        $this->_bdd = new PDO('mysql:host=10.0.3.5;dbname=combatgame;characterset=utf8', 'root');
+        $this->_bdd = new PDO('mysql:host=' . $this->ip . ';dbname=combatgame;charset=utf8', 'root', 'AzertyuioP123');
         $this->_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->_bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
