@@ -1,7 +1,9 @@
-aside {
+section {
     &.block {
         &-players {
-            height: 90vh;
+            max-height: 100h;
+	    min-height: 200px;
+	    font-size: 0.8em;
         }
     }
 
@@ -87,3 +89,15 @@ nav {
         }
     }
 }
+
+.block-players {
+    h4 {
+	font-size: 0.7rem;
+    }
+    .list-players {
+	padding: 10px;
+	font-size: 0.6rem;
+    }
+}
+
+

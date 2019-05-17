@@ -1,7 +1,6 @@
 <?php
 session_start();
 require('partials/classes/combatgame.php');
-
 ?>
 
 <!DOCTYPE html>
@@ -19,27 +18,33 @@ require('partials/classes/combatgame.php');
 <body>
     <?php require('partials/navbar.php'); ?>
 
+    <?php if (isset($_SESSION['userId'])) : ?>
+        <section class="block-players d-flex justify-content-start align-items-center">
+            <div class="list-players">
+                <h4>Choisis un de tes perso pour attaquer</h4>
+                <div class="list-group">
+                    <?php require('processing/create_list_characters_connected_user.php'); ?>
+                </div>
+            </div>
+        </section>
+    <?php endif; ?>
 
-    <aside class="block-players d-flex justify-content-start align-items-center">
+    <section class="block-players d-flex justify-content-start align-items-center">
         <div class="list-players">
+            <?php if (isset($_SESSION['userId'])) : ?>
+                <h4>Choisis un personnage à attaquer</h4>
+            <?php endif; ?>
             <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
-                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+                <?php
+                if (isset($_SESSION['userId'])) {
+                    require('processing/create_list_all_character_exceptUser.php');
+                } else {
+                    require('processing/create_list_all_character.php');
+                }
+                ?>
             </div>
         </div>
-    </aside>
-
-
-    <?php
-
-    $perso = new Archer('Robinhood');
-    $register = new CharacterManager();
-
-    ?>
-
+    </section>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
