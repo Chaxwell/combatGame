@@ -1,6 +1,8 @@
 <?php
 session_start();
-require('partials/classes/combatgame.php');
+require('partials/classes/Character.php');
+require('partials/classes/CharacterChildren.php');
+require('partials/classes/CharacterManager.php');
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +47,23 @@ require('partials/classes/combatgame.php');
             </div>
         </div>
     </section>
+
+
+    <?php
+    $manager = new CharacterManager();
+    $wiz = new Wizard(['id' => $_SESSION['userId'],
+    'name' => 'Gandalf',
+    'class' => 'wizard']);
+    $arc = new Archer(['id' => 2,
+    'name' => 'Robinhood',
+    'class' => 'archer']);
+    
+    echo 'Pdv avant attaque : ' . $arc->getHealthPoints();
+    echo '<br>';
+    $wiz->attack($arc);
+    echo 'Pdv après attaque : ' . $arc->getHealthPoints();
+    $manager->deleteFromDBIfDead($arc);
+    ?>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
