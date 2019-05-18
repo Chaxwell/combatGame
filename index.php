@@ -50,19 +50,21 @@ require('partials/classes/CharacterManager.php');
 
 
     <?php
-    $manager = new CharacterManager();
-    $wiz = new Wizard(['id' => $_SESSION['userId'],
-    'name' => 'Gandalf',
-    'class' => 'wizard']);
-    $arc = new Archer(['id' => 2,
-    'name' => 'Robinhood',
-    'class' => 'archer']);
-    
-    echo 'Pdv avant attaque : ' . $arc->getHealthPoints();
-    echo '<br>';
-    $wiz->attack($arc);
-    echo 'Pdv après attaque : ' . $arc->getHealthPoints();
-    $manager->deleteFromDBIfDead($arc);
+    if (isset($_SESSION['userId'])) {
+        $manager = new CharacterManager();
+        $wiz = new Wizard(['id' => $_SESSION['userId'],
+        'name' => 'Gandalf',
+        'class' => 'wizard']);
+        $arc = new Archer(['id' => 2,
+        'name' => 'Robinhood',
+        'class' => 'archer']);
+        
+        echo 'Pdv avant attaque : ' . $arc->getHealthPoints();
+        echo '<br>';
+        $wiz->attack($arc);
+        echo 'Pdv après attaque : ' . $arc->getHealthPoints();
+        $manager->deleteFromDBIfDead($arc);
+    }
     ?>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
