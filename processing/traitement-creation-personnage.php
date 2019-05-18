@@ -1,7 +1,9 @@
 <?php
 session_start();
-require('../partials/classes/combatgame.php');
-require('../partials/connexion-bdd.php');
+require('../partials/classes/Character.php');
+require('../partials/classes/CharacterChildren.php');
+require('../partials/classes/CharacterManager.php');
+
 
 if (empty($_POST['characterName'])) {
     header('refresh:2;url=../index.php');
@@ -11,10 +13,15 @@ if (empty($_POST['characterName'])) {
 $characterName = htmlspecialchars($_POST['characterName']);
 $characterClass = ucfirst($_POST['characterClass']);
 
-$character = new $characterClass($characterName);
+$manager  = new CharacterManager();
 
-$register  = new CharacterManager();
-$register->add($character, $_SESSION['userId']);
+// Instantiate one character's subclass
+$character = new $characterClass([
+    'userId' => $_SESSION['userId'],
+    'name' => $characterName,
+    'class' => $characterClass
+]);
 
+$manager->add($character);
 
 header('Location: ../index.php');
