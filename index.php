@@ -19,7 +19,7 @@ require('partials/classes/CharacterManager.php');
 
 
     <body>
-
+<?php require('partials/navbar.php'); ?>
 	<main>
 	    <section class="container-char-lists">
 		<?php if (isset($_SESSION['userId'])): ?>

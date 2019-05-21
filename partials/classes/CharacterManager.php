@@ -3,9 +3,9 @@
 class CharacterManager
 {
     private $_bdd;
-    private $_bddIP = '127.0.0.1';
+    private $_bddIP = '10.0.3.5';
     private $_bddUSR = 'root';
-    private $_bddPW = 'AzertyuioP123';
+    private $_bddPW = '';
     private $_bddDB = 'combatgame';
 
 
