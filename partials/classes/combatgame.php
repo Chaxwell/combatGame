@@ -85,6 +85,14 @@ class CharacterManager
         return $req->fetchAll();
     }
 
+    public function getCharacterFromId($id)
+    {
+	$sql="SELECT * FROM characters WHERE id = $userId";
+        $req = $this->bdd()->query($sql);
+        return $req->fetch();
+    }
+
+
     public function getAllCharacters()
     {
         $req = $this->bdd()->query('SELECT * FROM characters');
@@ -157,13 +165,13 @@ class Warrior extends Character
     public $healthPoints = 100;
 
     const CATEGORY = "Warrior";
-	function __construct($name)
-	{
-            $this->name = $name;
-	}
-
-	public function attack($target)
-	{
-            $this->_attack($target);
-	}
+    function __construct($name)
+    {
+        $this->name = $name;
     }
+
+    public function attack($target)
+    {
+        $this->_attack($target);
+    }
+}

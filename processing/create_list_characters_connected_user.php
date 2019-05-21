@@ -4,15 +4,16 @@ $userId = $_SESSION['userId'];
 $listCharacters = $charManager->getCharactersFromUser($userId);
 ?>
 
-<form>
+<!-- <label for="pet-select">Mes personnages</label> -->
+<select id="pet-select" class="list-group-item list-group-item-action">
+    <option value="">--Choisis un de tes persos pour attaquer--</option>
     <?php foreach($listCharacters as $character): ?>
-	<div class="list-group-item list-group-item-action">
-	    <input type="radio" id="<?=$character['id'];?>"
-	       name="perso">
-	    <label for="<?=$character['id'];?>">
-		<?=$character['name'];?> - <?=$character['class'];?> - <?=$character['healthPoints'];?> pdv
-	    </label>
-	</div>
-    <?php endforeach ?>
-</form>
+	<option value="<?=$character['id'];?>">
+	    <?=$character['name'];?> - <?=$character['class'];?> - <?=$character['healthPoints'];?> pdv
+	    - Force de <?=$character['strength'];?>
+	</option>
+	<?php endforeach ?>
+</select>
+
+
 

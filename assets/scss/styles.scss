@@ -1,53 +1,69 @@
-section {
-    &.block {
-        &-players {
-            max-height: 100h;
-	    min-height: 200px;
-	    font-size: 0.8em;
-        }
-    }
+body {
+    box-sizing: border-box;
+}
 
-    .list {
-        &-players {
-            border-right           : 4px solid #444;
-            border-top             : 4px solid #444;
-            border-top-right-radius: 5px;
-        }
 
-        &-group {
-            .list {
-                &-group {
-                    &-item {
-                        border-radius: 0;
-                        color        : #111;
+h3 {
+    font-size: 0.7rem;
+}
 
-                        &-action {
-                            &:hover {
-                                // empty
-                            }
-                        }
-                    }
-                }
+// h2 {
+//     font-size:
+// }
+
+$nav-height: 50px;
+
+section{
+    div {
+	&.block {
+            &-players {
+		font-size: 0.8em;
             }
-        }
-    }
+	}
 
-    a {
-        &.list {
+	.list {
+            &-players {
+		border-right           : 4px solid #444;
+		border-top             : 4px solid #444;
+		border-top-right-radius: 5px;
+            }
+
             &-group {
-                &-item {
-                    &:focus {
-                        background-color: #ccc;
-                        transition      : all linear 200ms;
-                    }
-                }
+		.list {
+                    &-group {
+			&-item {
+                            border-radius: 0;
+                            color        : #111;
 
+                            &-action {
+				&:hover {
+                                    // empty
+				}
+                            }
+			}
+                    }
+		}
             }
-        }
+	}
+
+	a {
+            &.list {
+		&-group {
+                    &-item {
+			&:focus {
+                            background-color: #ccc;
+                            transition      : all linear 200ms;
+			}
+                    }
+
+		}
+            }
+	}
     }
 }
 
 nav {
+    height: $nav-height;
     a {
         &.nav {
             &-link {
@@ -91,13 +107,71 @@ nav {
 }
 
 .block-players {
-    h4 {
-	font-size: 0.7rem;
-    }
     .list-players {
 	padding: 10px;
 	font-size: 0.6rem;
     }
 }
 
+
+main {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+    height: calc(100vh - #{$nav-height});
+    background-image: url('/assets/img/bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.container-char-lists {
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    div.block-players:first-child {
+	margin-top: 10px;
+    }
+    div.block-players:last-child{
+	margin-bottom: 10px;
+	.list-group{
+	    max-height: 50vh;
+	    overflow-y: scroll;
+	}
+    }
+}
+
+#container-cards-and-log {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    padding: 20px;
+    grid-gap: 20px;
+}
+
+#cards {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-gap: 15px;
+    > div {
+	border: 1px solid black;
+	min-width: 100%;
+	background-color: blue;
+    }
+    button img {
+	max-width: 100%;
+    }
+}
+
+.button-attack {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#combat-log {
+    background-color: red;
+    min-height: 100%;
+    min-width: 100%; 
+}
 
