@@ -3,7 +3,10 @@
 class CharacterManager
 {
     private $_bdd;
-    private $ip = '127.0.0.1';
+    private $_bddIP = '127.0.0.1';
+    private $_bddUSR = 'root';
+    private $_bddPW = 'AzertyuioP123';
+    private $_bddDB = 'combatgame';
 
 
     // CRUD
@@ -27,21 +30,21 @@ class CharacterManager
         $req = $this->bdd()->prepare('DELETE FROM characters WHERE id = ?');
         $req->execute(array($character->getId()));
     }
-    
+
     public function deleteFromDBIfDead(Character $character)
     {
         if ($character->isDead()) {
             $req = $this->delete($character);
         }
     }
-    
+
 
     // Getters
     public function getCharactersFromUser(int $userId)
     {
         $req = $this->bdd()->prepare('SELECT * FROM characters WHERE userId = ?');
         $req->execute(array($userId));
-        
+
         return $req->fetchAll();
     }
 
@@ -51,15 +54,15 @@ class CharacterManager
 
         return $req->fetchAll();
     }
-    
+
     public function getAllCharactersExceptConnectedUser(int $userId)
     {
         $req = $this->bdd()->prepare('SELECT * FROM characters WHERE NOT userId = ?');
         $req->execute(array($userId));
-        
+
         return $req->fetchAll();
     }
-    
+
     public function getCharacterIdFromCharacterName(Character $character)
     {
         $req = $this->bdd()->prepare('SELECT id FROM characters WHERE userId = ? AND name = ?');
@@ -70,7 +73,8 @@ class CharacterManager
 
 
     // Count
-    public function countAllCharacters() {
+    public function countAllCharacters()
+    {
         $req = $this->bdd()->query('SELECT COUNT(*) AS count FROM characters');
 
         return $req->fetch();
@@ -88,7 +92,7 @@ class CharacterManager
     // PDO
     private function bdd()
     {
-        $this->_bdd = new PDO('mysql:host=' . $this->ip . ';dbname=combatgame;charset=utf8', 'root', '');
+        $this->_bdd = new PDO('mysql:host=' . $this->_bddIP . ';dbname=' . $this->_bddDB . ';charset=utf8', $this->_bddUSR, $this->_bddPW);
         $this->_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->_bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 
