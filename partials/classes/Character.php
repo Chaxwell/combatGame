@@ -115,4 +115,5 @@ class Character
     {
         $this->damage = (rand(1, 10) / 10)  * $this->strength;
     }
+
 }

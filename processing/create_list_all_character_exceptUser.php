@@ -7,7 +7,7 @@ $charManager = new CharacterManager;
 $listCharacters = $charManager->getAllCharactersExceptConnectedUser($_SESSION['userId']);
 ?>
 
-<form>
+<div id="listAttacked">
 	<?php foreach ($listCharacters as $character) : ?>
 		<div class="list-group-item list-group-item-action">
 			<input type="radio" id="<?= $character['id']; ?>" name="perso">
@@ -16,4 +16,4 @@ $listCharacters = $charManager->getAllCharactersExceptConnectedUser($_SESSION['u
 			</label>
 		</div>
 	<?php endforeach; ?>
-</form>
+</div>
