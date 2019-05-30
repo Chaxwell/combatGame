@@ -8,6 +8,7 @@ class Character
     protected $healthPoints;
     protected $class;
     protected $strength;
+    protected $xp;
 
     // Internal
     protected $damage;
@@ -62,6 +63,11 @@ class Character
         $this->strength = $strength;
     }
 
+    public function setXp(int $xp)
+    {
+        $this->xp = $xp;
+    }
+
 
     // Getters
     public function getId()
@@ -92,6 +98,16 @@ class Character
     public function getStrength()
     {
         return $this->strength;
+    }
+
+    public function getDamage()
+    {
+        return $this->damage;
+    }
+
+    public function getXp()
+    {
+        return $this->xp ? $this->xp : 0;
     }
 
 
