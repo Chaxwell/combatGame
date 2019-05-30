@@ -49,6 +49,14 @@ class CharacterManager
         return $req->fetchAll();
     }
 
+    public function getCharacter(int $charId)
+    {
+        $req = $this->bdd()->prepare('SELECT * FROM characters WHERE id = ?');
+        $req->execute(array($charId));
+
+        return $req->fetch();
+    }
+
     public function getAllCharacters()
     {
         $req = $this->bdd()->query('SELECT * FROM characters');

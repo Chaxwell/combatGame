@@ -112,5 +112,16 @@ main {
 #combat-log {
   background-color: red;
   min-height: 100%;
-  min-width: 100%;
-}
+  min-width: 100%; }
+
+.img-card {
+  max-width: 60%;
+  margin: auto;
+  border-radius: 50%;
+  border: 3px solid #666; }
+
+#attacker, #attacked {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center; }

@@ -25,17 +25,3 @@ radios.forEach(radio => {
         radio.childNodes[3].childNodes[1].classList.add('classe-personnage-selected');
     });
 });
-
-
-// DO ME
-// var attacker_card = document.getElementsById('attacker');
-
-// function show_selected() {
-//     var selector = document.getElementById('id_of_select');
-//     var value = selector[selector.selectedIndex].value;
-
-//     fetch("/score_insertion.php?score=1" + "&userID=" + userID + "&themeID=" + themeID);
-//     document.getElementById('display').innerHTML = value;
-// }
-
-// attacker_card.addEventListener('click', show_selected);

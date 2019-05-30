@@ -1,7 +1,31 @@
 <?php
-$charManager = new CharacterManager;
-$userId = $_SESSION['userId'];
-$character = $charManager->getCharacterFromId($id);
+require('../partials/classes/Character.php');
+require('../partials/classes/CharacterChildren.php');
+require('../partials/classes/CharacterManager.php');
+require('../partials/connexion-bdd.php');
 
+$charManager = new CharacterManager($bdd);
+$charId = $_GET['id'];
+$character = $charManager->getCharacter($charId);
 
-echo $character;
+switch ($character['class']) {
+    case "archer":
+	$imgPath = "assets/img/archer.png";
+	break;
+    case "warrior":
+	$imgPath = "assets/img/warrior.png";
+	break;
+    case "wizard":
+	$imgPath = "assets/img/wizard.png";
+	break;
+}
+?>
+<h4>
+    <?= $character['name']; ?>    
+</h4>
+
+<img class="img-card" alt="class" src="<?= $imgPath ?>"/>
+
+<p>
+    PDV: <?= $character['healthPoints'];?> - Force: <?=$character['healthPoints'];?>
+</p>
