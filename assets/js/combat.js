@@ -21,7 +21,7 @@ function populateAttackerCard() {
 
     let attackerCard = document.getElementById("attacker");
 
-    fetch('/processing/populate_attacker_card.php?id=' + value)
+    fetch('/processing/generate_fighters_cards.php?id=' + value)
 	.then(function(response) {
 
 	    return response.text();
@@ -37,7 +37,7 @@ function populateAttackedCard() {
     let id = checkedRad.getAttribute("id");
     let attackedCard = document.getElementById("attacked");
 
-    fetch('/processing/populate_attacker_card.php?id=' + id)
+    fetch('/processing/generate_fighters_cards.php?id=' + id)
 	.then(function(response) {
 	    return response.text();
 	})

@@ -19,7 +19,7 @@ require('partials/classes/CharacterManager.php');
 
 
     <body>
-<?php require('partials/navbar.php'); ?>
+	<?php require('partials/navbar.php'); ?>
 	<main>
 	    <section class="container-char-lists">
 		<?php if (isset
@@ -58,6 +58,15 @@ require('partials/classes/CharacterManager.php');
 		</div>
 	    </section>
 
+<!-- 
+####    ##   #####  #####   ####  
+#    #  #  #  #    # #    # #      
+#      #    # #    # #    #  ####  
+#      ###### #####  #    #      # 
+#    # #    # #   #  #    # #    # 
+####  #    # #    # #####   ####  
+-->
+
 	    <section id="container-cards-and-log">
 		<div id="cards">
 		    <div id="attacker">
@@ -69,6 +78,7 @@ require('partials/classes/CharacterManager.php');
 			    <img alt="attaquer !" src="/assets/img/swords.png"/>
 			</button>
 		    </div>
+
 		    
 		    <div id="attacked">
 

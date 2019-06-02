@@ -1,0 +1,51 @@
+* kanban
+| backlog                      | Production / En cours | test                                                     | terminé                                                  |
+|------------------------------+-----------------------+----------------------------------------------------------+----------------------------------------------------------|
+| Création charte graphique    | [[Combat entre perso][Combat entre perso]]    | [[diff%C3%A9rence de la force de frappe en fonction des classes][différence de la force de frappe en fonction des classes]] | Création BDD                                             |
+| Intégration charte graphique |                       |                                                          | Possibilité pour un joueur de créer des personnages      |
+|                              |                       |                                                          | Un perso a 3 classes : guerrier archer magicien          |
+|                              |                       |                                                          | Représentation des persos dans une card avec pdv & stats |
+|------------------------------+-----------------------+----------------------------------------------------------+----------------------------------------------------------|
+
+
+* Fonctionnalités du jeu
+** Combat entre perso
+- Un personnage peut cibler un autre pour le frapper
+*** différence de la force de frappe en fonction des classes
+ -  Un guerrier frappe un magicien 2 fois plus fort, un magicien frappe
+    un archer 2 fois plus fort, un archer frappe un guerrier 2 fois plus
+    fort
+
+* Consignes originales et notes 
+** DONE Imaginer le nombre d'objets total dont nous aurons besoin
+** DONE Imaginer quelles propriétés et méthodes auront ces objets
+*** Objet _Personnage_
+- Atributs points de vie : 20
+**** méthode Attaque(attaquant, attaqué)
+- l'attaquant commence à frapper
+- vérifie si l'attaqué est pas mort
+- frappe qui enlève [0-5] (aléatoire) points dans tout les cas.
+- utilise la méthode foisDeux(attaquant, attaqué)
+- utilise la méthode score(chiffrealéatoire x foisDeuxounon,attaquant,attaqué)
+**** Méthode foisDeux(attaquant, attaqué)
+- si guerrier à Magicien -> true
+- si magicien à Archer -> true
+- si archer à Guerrier -> true
+**** Méthode Score(force,attaquant, attaqué)
+- (pdv attaqué - force PUIS - si pdv attaqué < 0 il meurt - sinon on update ses pdv
+
+#+BEGIN_SRC 
+Magicien->Attaque(Magicien,Guerrier);
+#+END_SRC
+
+*** Sous Classes _Guerrier_, _Archer_, _Magicien_
+- statistiques
+** DONE le représenter sous forme d'un graphique UML.
+** DONE imaginer quelles données nous devrons enregistrer dans la BDD
+*** table joueurs
+- nom (rantaplan, le vengeur masqué...)
+- pdv restants
+- type (magicien, archer...)
+- statistiques (combien de perso le joueur à tué)
+** DONE imaginer la structure de la BDD
+** La représenter sous forme d'un diagramme UML
