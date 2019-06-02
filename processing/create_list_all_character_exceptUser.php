@@ -2,8 +2,6 @@
 
 // create_list_all_character_exceptUser.php
 
-
-$charManager = new CharacterManager;
 $listCharacters = $charManager->getAllCharactersExceptConnectedUser($_SESSION['userId']);
 ?>
 

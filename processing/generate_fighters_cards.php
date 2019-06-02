@@ -2,8 +2,9 @@
 require('../partials/classes/Character.php');
 require('../partials/classes/CharacterChildren.php');
 require('../partials/classes/CharacterManager.php');
+require('../partials/connexion-bdd.php');
 
-$charManager = new CharacterManager;
+$charManager = new CharacterManager($bdd);
 $charId = $_GET['id'];
 $character = $charManager->getCharacter($charId);
 

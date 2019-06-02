@@ -3,6 +3,7 @@ session_start();
 require('../partials/classes/Character.php');
 require('../partials/classes/CharacterChildren.php');
 require('../partials/classes/CharacterManager.php');
+require('../partials/connexion-bdd.php');
 
 
 if (empty($_POST['characterName'])) {
@@ -13,7 +14,7 @@ if (empty($_POST['characterName'])) {
 $characterName = htmlspecialchars($_POST['characterName']);
 $characterClass = ucfirst($_POST['characterClass']);
 
-$manager  = new CharacterManager();
+$charManager  = new CharacterManager($bdd);
 
 // Instantiate one character's subclass
 $character = new $characterClass([
@@ -22,6 +23,6 @@ $character = new $characterClass([
     'class' => $characterClass
 ]);
 
-$manager->add($character);
+$charManager->add($character);
 
 header('Location: ../index.php');

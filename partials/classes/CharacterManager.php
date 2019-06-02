@@ -2,19 +2,20 @@
 
 class CharacterManager
 {
-    private $_bdd;
-    private $_bddIP = '10.0.3.5';
-    private $_bddUSR = 'root';
-    private $_bddPW = '';
-    private $_bddDB = 'combatgame';
+    private $bdd;
+
+    public function __construct(PDO $bdd)
+    {
+        $this->bdd = $bdd;
+    }
 
 
     // CRUD
     public function add(Character $character)
     {
-        $req = $this->bdd()->prepare('INSERT INTO characters(userId, name, healthPoints, class, strength)
-                                      VALUES(?, ?, ?, ?, ?)');
-        $req->execute(array($character->getUserId(), $character->getName(), $character->getHealthPoints(), strtolower($character::CATEGORY), $character->strength));
+        $req = $this->bdd->prepare('INSERT INTO characters(userId, name, healthPoints, class, strength, xp)
+                                      VALUES(?, ?, ?, ?, ?, ?)');
+        $req->execute(array($character->getUserId(), $character->getName(), $character->getHealthPoints(), strtolower($character::CATEGORY), $character->strength, $character->getXp()));
     }
 
     public function update(array $kwargs, Character $character)
@@ -34,7 +35,7 @@ class CharacterManager
     public function deleteFromDBIfDead(Character $character)
     {
         if ($character->isDead()) {
-            $req = $this->delete($character);
+            $this->delete($character);
         }
     }
 
@@ -73,7 +74,7 @@ class CharacterManager
 
     public function getCharacterIdFromCharacterName(Character $character)
     {
-        $req = $this->bdd()->prepare('SELECT id FROM characters WHERE userId = ? AND name = ?');
+        $req = $this->bdd()->prepare('SELECT * FROM characters WHERE userId = ? AND name = ?');
         $req->execute(array($character->getUserId(), $character->getName()));
 
         return $req->fetch();
@@ -97,13 +98,9 @@ class CharacterManager
     }
 
 
-    // PDO
+    // bdd
     private function bdd()
     {
-        $this->_bdd = new PDO('mysql:host=' . $this->_bddIP . ';dbname=' . $this->_bddDB . ';charset=utf8', $this->_bddUSR, $this->_bddPW);
-        $this->_bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $this->_bdd->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-
-        return $this->_bdd;
+        return $this->bdd;
     }
 }
