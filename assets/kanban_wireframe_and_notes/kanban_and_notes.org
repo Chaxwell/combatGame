@@ -1,11 +1,11 @@
 * kanban
-| backlog                      | Production / En cours | test                                                     | terminé                                                  |
-|------------------------------+-----------------------+----------------------------------------------------------+----------------------------------------------------------|
-| Création charte graphique    | [[Combat entre perso][Combat entre perso]]    | [[diff%C3%A9rence de la force de frappe en fonction des classes][différence de la force de frappe en fonction des classes]] | Création BDD                                             |
-| Intégration charte graphique |                       |                                                          | Possibilité pour un joueur de créer des personnages      |
-|                              |                       |                                                          | Un perso a 3 classes : guerrier archer magicien          |
-|                              |                       |                                                          | Représentation des persos dans une card avec pdv & stats |
-|------------------------------+-----------------------+----------------------------------------------------------+----------------------------------------------------------|
+| backlog                                                | Production / En cours          | test                                                     | terminé                                                  |
+|--------------------------------------------------------+--------------------------------+----------------------------------------------------------+----------------------------------------------------------|
+| Création charte graphique                              | [[Combat entre perso][Combat entre perso]] /Marc/        | [[diff%C3%A9rence de la force de frappe en fonction des classes][différence de la force de frappe en fonction des classes]] | Création BDD                                             |
+| Intégration charte graphique                           | [[Journal des combats][Journal des combats]] /Christophe/ |                                                          | Possibilité pour un joueur de créer des personnages      |
+| A la connexion les users rentre leur mdp *une* seule fois |                                |                                                          | Un perso a 3 classes : guerrier archer magicien          |
+|                                                        |                                |                                                          | Représentation des persos dans une card avec pdv & stats |
+|--------------------------------------------------------+--------------------------------+----------------------------------------------------------+----------------------------------------------------------|
 
 
 * Fonctionnalités du jeu
@@ -15,7 +15,8 @@
  -  Un guerrier frappe un magicien 2 fois plus fort, un magicien frappe
     un archer 2 fois plus fort, un archer frappe un guerrier 2 fois plus
     fort
-
+** Journal des combats
+Quand l'utilisateur est connecté, un journal de l'historique des combats est affiché.
 * Consignes originales et notes 
 ** DONE Imaginer le nombre d'objets total dont nous aurons besoin
 ** DONE Imaginer quelles propriétés et méthodes auront ces objets
